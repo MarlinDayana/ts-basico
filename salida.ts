@@ -6,7 +6,7 @@ var myString: string ='hello mayo';
 
 myString=22+"";
 
-var myNumber: number = 23;
+let myNumber: number ;
 
 var myBoolean: boolean =true||false;
 
@@ -136,16 +136,21 @@ resultado(prueba);
 
 
 class Person {
-    firstName: string;
-    lastName: string;
-    age: number;
+    // firstName: string;
+    // lastName: string;
+    // age: number;
 
-    constructor(name?:string, lastName?:string, age?:number){
-        this.firstName = name;
-        this.lastName = lastName;
-        this.age = age;
+    // constructor(name?:string, lastName?:string, age?:number){
+    //     this.firstName = name;
+    //     this.lastName = lastName;
+    //     this.age = age;
 
-    }
+    // }
+    constructor(
+        private name: string,
+        private lastName: string,
+        private age: number
+    ) {}
 
     register() {
         console.log(`${this.firstName} was registered`)
@@ -154,7 +159,7 @@ class Person {
     
 }
 
-var jony = new Person('jony');
+var jony = new Person('jony', 'smith', 30);
 
 console.log(jony.register())
 //document.write();
