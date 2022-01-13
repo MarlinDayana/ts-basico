@@ -48,7 +48,7 @@ var holass = function suma(num1:number, num2:number):number {
     return num1 + num2;
 }
 
-var resultSuma = function (
+ function resultSuma(
     num1:number | string, 
     num2:number | string):number {
     if (typeof num1 === 'string'){
@@ -61,7 +61,7 @@ var resultSuma = function (
 }
 
 
-var result2Suma = function (
+let result2Suma = function (
     num1:number | string= 23, 
     num2:number | string = 13):number {
     if (typeof num1 === 'string'){
@@ -117,20 +117,18 @@ resultado(prueba);
 // clases 
 
 
-// class Usuario {
-//     nombre: string;
-//     email: string;
-//     age: number
+class Usuario {
 
-//     constructor() {
-//         /*acá va tu código*/
-//      }
-// }
+    // aqui pueden ir las propiedades, pero mejor se colocan en el constructor para optimizzar el codigo 
 
-// class MiClase {
-//     constructor(nombre:string, apellido:string) {
-//     }
-// }
+    constructor(public nombre: string, 
+        email: string, age: number) {
+
+     }
+
+     // debajo del constructor se escriben los mestodos que requiera la clase 
+}
+
 
 // scripts 
 
@@ -147,22 +145,47 @@ class Person {
 
     // }
     constructor(
-        private name: string,
-        private lastName: string,
-        private age: number
+        public name: string,
+        protected lastName: string,
+        public age: number
     ) {}
 
     register() {
-        console.log(`${this.firstName} was registered`)
+        console.log(`${this.name} was registered`)
     }
 
+    public showmeAge(){
+        return this.age + 'years';
+    }
+
+    pago(){
+        console.log(`el usuario ${this.name} ya registro el pago`)
+    }
     
+}
+
+class Member extends Person {
+    id: number;
+
+    constructor (id: number, name: string, lastName: string, age: number){
+        super(name, lastName, age);
+        this.id = id;
+    }
+
+    pay(){
+        super.pago();
+    }
 }
 
 var jony = new Person('jony', 'smith', 30);
 
-console.log(jony.register())
-//document.write();
+let gordon = new Member(12, 'gordon', 'Trump', 54);
+
+gordon.pay()
+
+console.log(gordon.pay())
+console.log(jony.register() + jony.showmeAge())
+document.write();
 
 
 

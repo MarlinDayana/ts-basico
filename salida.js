@@ -1,8 +1,9 @@
+"use strict";
 console.log('hello world');
 // tipos de datos 
 var myString = 'hello mayo';
 myString = 22 + "";
-var myNumber = 23;
+let myNumber;
 var myBoolean = true || false;
 var myVar = 'hello';
 myVar = 22;
@@ -24,7 +25,7 @@ var myNull = null;
 var holass = function suma(num1, num2) {
     return num1 + num2;
 };
-var resultSuma = function (num1, num2) {
+function resultSuma(num1, num2) {
     if (typeof num1 === 'string') {
         num1 = parseInt(num1);
     }
@@ -32,10 +33,8 @@ var resultSuma = function (num1, num2) {
         num2 = parseInt(num2);
     }
     return num1 + num2;
-};
-var result2Suma = function (num1, num2) {
-    if (num1 === void 0) { num1 = 23; }
-    if (num2 === void 0) { num2 = 13; }
+}
+let result2Suma = function (num1 = 23, num2 = 13) {
     if (typeof num1 === 'string') {
         num1 = parseInt(num1);
     }
@@ -48,14 +47,14 @@ var nombre = function getName(name, lastName) {
     if (lastName === undefined) {
         return name;
     }
-    return ("".concat(name, " ").concat(lastName));
+    return (`${name} ${lastName}`);
 };
 var sumar = function sumar(valor1, valor2) {
     return valor1 + valor2;
 };
 console.log(sumar(10, 5));
 var resultado = function showTODO(todo) {
-    console.log("".concat(todo.tittle, " , ").concat(todo.text));
+    console.log(`${todo.tittle} , ${todo.text}`);
 };
 resultado({
     tittle: 'EatDiner',
@@ -64,31 +63,50 @@ resultado({
 var prueba = { tittle: 'EatDine7r', text: 'lorent' };
 resultado(prueba);
 // clases 
-// class Usuario {
-//     nombre: string;
-//     email: string;
-//     age: number
-//     constructor() {
-//         /*acá va tu código*/
-//      }
-// }
-// class MiClase {
-//     constructor(nombre:string, apellido:string) {
-//     }
-// }
+class Usuario {
+    // aqui pueden ir las propiedades, pero mejor se colocan en el constructor para optimizzar el codigo 
+    constructor(nombre, email, age) {
+        this.nombre = nombre;
+    }
+}
 // scripts 
-var Person = /** @class */ (function () {
-    function Person(name, lastName, age) {
-        this.firstName = name;
+class Person {
+    // firstName: string;
+    // lastName: string;
+    // age: number;
+    // constructor(name?:string, lastName?:string, age?:number){
+    //     this.firstName = name;
+    //     this.lastName = lastName;
+    //     this.age = age;
+    // }
+    constructor(name, lastName, age) {
+        this.name = name;
         this.lastName = lastName;
         this.age = age;
     }
-    Person.prototype.register = function () {
-        console.log("".concat(this.firstName, " was registered"));
-    };
-    return Person;
-}());
-var jony = new Person('jony');
-console.log(jony.register());
-//document.write();
+    register() {
+        console.log(`${this.name} was registered`);
+    }
+    showmeAge() {
+        return this.age + 'years';
+    }
+    pago() {
+        console.log(`el usuario ${this.name} ya registro el pago`);
+    }
+}
+class Member extends Person {
+    constructor(id, name, lastName, age) {
+        super(name, lastName, age);
+        this.id = id;
+    }
+    pay() {
+        super.pago();
+    }
+}
+var jony = new Person('jony', 'smith', 30);
+let gordon = new Member(12, 'gordon', 'Trump', 54);
+gordon.pay();
+console.log(gordon.pay());
+console.log(jony.register() + jony.showmeAge());
+document.write();
 // codigo fuente para revisar -- https://github.com/FaztWeb/typescript-course
